@@ -1,4 +1,7 @@
-import Sequalize from 'sequelize';
+require('dotenv').config();
+const { Sequelize } = require('sequelize');
+const fs = require('fs');
+const path = require('path');
 
 export const sequalize = new Sequalize(
     'postgres',
@@ -6,7 +9,7 @@ export const sequalize = new Sequalize(
     '54321',
     {
         host: 'localhost',
-        dialect: 'postgres',
+        dialect: 'medicSystem',
         pool:{
             max: 5,
             min: 0,
@@ -15,4 +18,6 @@ export const sequalize = new Sequalize(
         },
         logging: false //Para mostrar mensajes por consola.-
     }
-)
+);
+const basename = path.basename(__filename);
+const modelDefiners = [];
