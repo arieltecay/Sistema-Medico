@@ -2,7 +2,12 @@ const server = require("express").Router();
 const { User } = require('../database')
 
 server.get("/", async (req, res) => {
-  res.send("Funcionamiento general del sistema para ariel tecay")
+  // res.send("Funcionamiento general del sistema para ariel tecay")
+  server.get("/", (req, res) => {
+    User.findAll({})
+      .then((users) => { res.send(users); })
+      .catch((err) => res.status(400).json({ err }));
+  });
 });
 
 //ruta para crear usuario
