@@ -2,8 +2,8 @@ const { DataTypes } = require("sequelize");
 
 //Modelo de usuario
 module.exports = (sequelize) => {
-  const usuario = sequelize.define(
-    "user",
+  const paciente = sequelize.define(
+    "paciente",
     {
       name: {
         type: DataTypes.STRING,
@@ -20,24 +20,21 @@ module.exports = (sequelize) => {
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
         unique: true,
         validate: {
           isEmail: true,
         },
       },
-      nSocio: {
-        type: DataTypes.INTEGER,
-        unique: true,
-      },
-      direccion:{
+      celular: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
-      celular:{
+      historialMedico: {
         type: DataTypes.STRING,
-        unique: true 
-      }
+        allowNull: false
+      },
     },
   );
-  return usuario;
+  return paciente;
 };
