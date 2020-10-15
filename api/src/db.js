@@ -33,9 +33,12 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { 
   User, 
   Paciente,
-  historyClinic } = sequelize.models;
+  HistoryClinic } = sequelize.models;
+  // console.log(sequelize.models)
 
 // Relaciones
+Paciente.hasMany(HistoryClinic);
+HistoryClinic.belongsTo(Paciente);
 /* Paciente.hasMany(historyClinic), // Se añade una clave PacienteId a la tabla historyClinic
 historyClinic.belongsTo(Paciente),// Se añade una clave PacienteId a la tabla historyClinic */
 

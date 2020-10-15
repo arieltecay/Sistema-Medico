@@ -24,10 +24,12 @@ server.post("/", (req, res) => {
     lastName: req.body.lastName,
     DNI: req.body.DNI,
     email: req.body.email,
+    password: req.body.password,
+    role: req.body.role,
     direccion: req.body.direccion,
     celular: req.body.celular,
   }).then(user => {
-    res.status(200).send("Agregado Satisfactoriamente" + user)
+    res.status(200).send("Agregado Satisfactoriamente")
   }).catch(err => res.send(err));
 });
 

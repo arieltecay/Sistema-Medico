@@ -4,7 +4,6 @@ const productRouter = require('./users.js');
 const pacienteRouter = require('./paciente.js');
 const historyClinic = require('./historyClinic.js');
 
-
 const router = Router();
 
 // load each router on a route
