@@ -36,8 +36,8 @@ const {
   historyClinic } = sequelize.models;
 
 // Relaciones
-Paciente.hasMany(historyClinic);
-historyClinic.belongsTo(Paciente);
+/* Paciente.hasMany(historyClinic), // Se añade una clave PacienteId a la tabla historyClinic
+historyClinic.belongsTo(Paciente),// Se añade una clave PacienteId a la tabla historyClinic */
 
 
 module.exports = {

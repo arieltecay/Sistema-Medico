@@ -13,6 +13,9 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      pacienteId: {
+        type:DataTypes.INTEGER
+      }
     },
   );
   return historyClinic;

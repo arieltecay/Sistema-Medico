@@ -1,11 +1,21 @@
 const server = require("express").Router();
 const { User } = require('../db')
 
+//Ruta para buscar todos los usuarios
 server.get("/", (req, res) => {
   User.findAll({})
     .then((users) => { res.send(users); })
     .catch((err) => res.status(400).json({ err }));
 });
+
+
+server.get('/:id', (req, res) => {
+  User.findOne({
+    where: { id: req.params.id }
+  })
+    .then((users) => { res.send(users); })
+    .catch((err) => res.status(400).json({ err }));
+})
 
 //ruta para crear usuario
 server.post("/", (req, res) => {
