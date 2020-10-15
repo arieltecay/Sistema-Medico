@@ -30,12 +30,13 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         unique: true,
       },
-      direccion:{
+      direccion: {
         type: DataTypes.STRING,
+
       },
-      celular:{
+      celular: {
         type: DataTypes.STRING,
-        unique: true 
+        unique: true
       }
     },
   );

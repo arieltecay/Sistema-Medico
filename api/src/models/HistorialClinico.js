@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 //Modelo de usuario
 module.exports = (sequelize) => {
   const historyClinic = sequelize.define(
-    "user",
+    "historyClinic",
     {
       name: {
         type: DataTypes.STRING,
