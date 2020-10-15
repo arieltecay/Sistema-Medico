@@ -26,17 +26,13 @@ module.exports = (sequelize) => {
           isEmail: true,
         },
       },
-      nSocio: {
-        type: DataTypes.INTEGER,
-        unique: true,
-      },
       direccion: {
         type: DataTypes.STRING,
 
       },
       celular: {
         type: DataTypes.STRING,
-        unique: true
+        unique: false
       }
     },
   );

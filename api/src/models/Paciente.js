@@ -34,6 +34,14 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      direccion: {
+        type:DataTypes.STRING,
+        allowNull: true
+      },
+      nSocio: {
+        type: DataTypes.INTEGER,
+        unique: true,
+      },
     },
   );
   return paciente;
