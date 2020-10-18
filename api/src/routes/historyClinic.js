@@ -1,20 +1,30 @@
 const server = require("express").Router();
-const { HistoryClinic } = require('../db')
+const { Historyclinic } = require('../db')
 
-//Ruta que busca todas las historias clinicas creadas
+//Ruta para buscar todos los usuarios
 server.get("/", (req, res) => {
-    HistoryClinic.findAll({})
+    Historyclinic.findAll({})
         .then((historiClinic) => { res.send(historiClinic); })
         .catch((err) => res.status(400).json({ err }));
 });
 
-//ruta para crear Historia Clinica  
+
+server.get('/:id', (req, res) => {
+    User.findOne({
+        where: { id: req.params.id }
+    })
+        .then((users) => { res.send(users); })
+        .catch((err) => res.status(400).json({ err }));
+})
+
+//ruta para crear usuario
 server.post("/", (req, res) => {
-    HistoryClinic.create({
+    Historyclinic.create({
         name: req.body.name,
-        description: req.body.description,
-    }).then(historyClinic => {
-        res.status(200).send("Agregado Satisfactoriamente" + historyClinic)
+        description: req.body.description
+        
+    }).then(historiClinic => {
+        res.status(200).send("Agregado Satisfactoriamente")
     }).catch(err => res.send(err));
 });
 

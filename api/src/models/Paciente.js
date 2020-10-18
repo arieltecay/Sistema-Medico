@@ -30,10 +30,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      historialMedico: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
       direccion: {
         type:DataTypes.STRING,
         allowNull: true

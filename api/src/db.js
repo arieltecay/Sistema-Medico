@@ -33,16 +33,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { 
   User, 
   Paciente,
-  HistoryClinic } = sequelize.models;
-  // console.log(sequelize.models)
+  Historyclinic } = sequelize.models;
+  console.log(sequelize.models)
 
 // Relaciones
-Paciente.hasMany(HistoryClinic);
-HistoryClinic.belongsTo(Paciente);
-/* Paciente.hasMany(historyClinic), // Se añade una clave PacienteId a la tabla historyClinic
-historyClinic.belongsTo(Paciente),// Se añade una clave PacienteId a la tabla historyClinic */
-
-
+Paciente.hasMany(Historyclinic)
+Historyclinic.belongsTo(Paciente)
+/* HistoryClinic.hasMany(Paciente);
+Paciente.belongsTo(HistoryClinic);
+ */
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
