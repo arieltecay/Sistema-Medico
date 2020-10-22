@@ -41,33 +41,9 @@ server.post("/:id/historyClinic", (req, res) => {
     name: req.body.name,
     description: req.body.description
   })
-    .then(historyClinic => { res.json("Agregado Correctamente"+historyClinic); })
+    .then(historyClinic => { res.json("Agregado Correctamente"); })
     .catch(error => { res.status(400).json({ error }) });
 })
-/* server.post("/:id/historyClinic/", (req, res) => {
-  console.log(req.body);
-  Historyclinic.findOrCreate({
-    where: {
-      pacienteId: req.body.pacienteId,
-      historyId: req.params.id
-    },
-    defaults: {
-      pacienteId: req.body.pacienteId,
-      name: req.body.name,
-      description: req.body.description,
-    },
-  })
-    .then((history) => {
-      if (history[1] === false)
-        history[0]
-          .update({
-            name: req.body.name,
-            description: req.body.description,
-          })
-          .then((rev) => res.send(rev + "Actualizado Correctamente"));
-      else res.send(history + "Agregado correctamente");
-    })
-    .catch((error) => res.send(error));
-}) */
+
 
 module.exports = server;

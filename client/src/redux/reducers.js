@@ -1,0 +1,13 @@
+import * as C from './constants'
+const initialState = {
+pacientes:[]
+}
+
+function rootReducer(state = initialState, action) {
+    switch (action.type) {
+        case C.GET_PACIENTES: {
+            return { ...state, pacientes: action.payload }
+        }
+    }
+}
+export default rootReducer;
