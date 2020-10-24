@@ -8,6 +8,7 @@ function rootReducer(state = initialState, action) {
         case C.GET_PACIENTES: {
             return { ...state, pacientes: action.payload }
         }
+        default: return state;
     }
 }
 export default rootReducer;

@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true;
 // aca van los actions del GET
 export function getPacientes() {
     return function (dispatch) {
-        axios.get(`${C.SERVER_ADDRESS}/pacientes`)
+        axios.get(`${C.SERVER_ADDRESS}/paciente`)
             .then((res) => { dispatch({ type: C.GET_PACIENTES, payload: res.data }) })
             .catch((error) => alert(error, "error"));
     }

@@ -1,6 +1,6 @@
 const server = require("express").Router();
 const { Paciente, Historyclinic } = require('../db')
-
+const { Op } = require("sequelize");
 
 //Ruta que devuelve todos los pacientes
 server.get("/", (req, res) => {
@@ -44,6 +44,22 @@ server.post("/:id/historyClinic", (req, res) => {
     .then(historyClinic => { res.json("Agregado Correctamente"); })
     .catch(error => { res.status(400).json({ error }) });
 })
+//Ruta que busca un paciente segun campo de busqueda
+server.get("/search", (req, res) => {
+  console.log(req)
+  Paciente.findAll({
+    where: {
+      [Op.or]: [
+        { name: { [Op.like]: "%" + req.query.query.toLowerCase() + "%" } },
+        {
+          lastName: { [Op.like]: "%" + req.query.query.toLowerCase() + "%" },
+        },
+      ],
+    },
+  })
+    .then((pacientes) => res.status(200).json(pacientes))
+    .catch((error) => res.status(400).json({ error }));
+});
 
 
 module.exports = server;

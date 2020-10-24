@@ -1,4 +1,4 @@
-export const SERVER_ADDRESS = "http://localhost:3000";
+export const SERVER_ADDRESS = "http://localhost:3001";
 
 // aca van los actions del GET
 export const GET_PACIENTES = "GET_PACIENTES";
