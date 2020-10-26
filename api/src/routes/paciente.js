@@ -1,6 +1,8 @@
 const server = require("express").Router();
 const { Paciente, Historyclinic } = require('../db')
-const { Op } = require("sequelize");
+// const { Op } = require("sequelize");
+const sequelize = require("sequelize");
+const Op = sequelize.op
 
 //Ruta que devuelve todos los pacientes
 server.get("/", (req, res) => {
@@ -9,15 +11,20 @@ server.get("/", (req, res) => {
     .then((pacientes) => { res.send(pacientes); })
     .catch((err) => res.status(400).json({ err }));
 });
-//Ruta que devuelve un Paciente en especifico
+//Ruta que devuelve un Paciente en especifico 
 server.get("/:id", (req, res) => {
   Paciente.findOne({
     where: { id: req.params.id }
   })
     .then((pacientes) => res.send(pacientes))
     .catch((e) => res.status(400).json(e))
-  console.log(req.params.id);
+  // console.log(req.params.id);
 })
+//Ruta que busca un paciente segun campo de busqueda
+server.get("/ariel", (req,res) => {
+  res.json("Hola Mundo")
+})
+
 //ruta para crear paciente
 server.post("/", (req, res) => {
   // console.log(req.body);
@@ -44,22 +51,5 @@ server.post("/:id/historyClinic", (req, res) => {
     .then(historyClinic => { res.json("Agregado Correctamente"); })
     .catch(error => { res.status(400).json({ error }) });
 })
-//Ruta que busca un paciente segun campo de busqueda
-server.get("/search", (req, res) => {
-  console.log(req)
-  Paciente.findAll({
-    where: {
-      [Op.or]: [
-        { name: { [Op.like]: "%" + req.query.query.toLowerCase() + "%" } },
-        {
-          lastName: { [Op.like]: "%" + req.query.query.toLowerCase() + "%" },
-        },
-      ],
-    },
-  })
-    .then((pacientes) => res.status(200).json(pacientes))
-    .catch((error) => res.status(400).json({ error }));
-});
-
 
 module.exports = server;
