@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Row } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container'
+import "./Search.css"
 
 export default function Search() {
     const [validated, setValidated] = useState(false)

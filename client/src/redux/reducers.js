@@ -1,12 +1,19 @@
 import * as C from './constants'
 const initialState = {
-pacientes:[]
+    pacientes: [],
+    paciente: []
 }
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
         case C.GET_PACIENTES: {
             return { ...state, pacientes: action.payload }
+        }
+        case C.CREATE_PACIENTE: {
+            console.log(state);
+            return {
+                ...state, paciente: state.paciente.concat(action.payload),
+            }
         }
         default: return state;
     }

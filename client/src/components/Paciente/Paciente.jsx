@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table'
 import { useDispatch, useSelector } from "react-redux";
 import { getPacientes } from '../../redux/actions'
-import Search from '../Search'
-import AddPacient from '../addPacient'
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import Search from '../Search/Search'
+import AddPacient from '../AddPaciente/addPacient'
+
 
 export default function Paciente() {
     const dispatch = useDispatch();
@@ -34,7 +32,7 @@ export default function Paciente() {
     }
 
     return (
-        <div>
+        <div className="pt-5">
             <div className="text-center pt-3 pb-3 ">
                 <button
                     onClick={() => stateShowPaciente()}
@@ -55,20 +53,28 @@ export default function Paciente() {
                 >Agregar</button>
             </div>
             <div>
-                {searchBar ? <Search /> : ""}
-                {addPaciente ? <AddPacient /> : ""}
+                <div>
+                    {searchBar ? <Search /> : ""}
+                </div>
+                <div>
+                    {addPaciente ? <AddPacient /> : ""}
+                </div>
 
             </div>
 
             {showPaciente &&
-                <div className="container ">
-                    <Table className="table" striped bordered hover size="sm" responsive>
+                <div className="container">
+                    <Table className="table " striped bordered hover size="sm" responsive>
                         <thead size="sm">
                             <tr>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>DNI</th>
-                                <th>Email</th>
+                                <th>Celular</th>
+                                <th>E-Mail</th>
+                                <th>Direccion</th>
+                                <th>Carnet</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,7 +83,11 @@ export default function Paciente() {
                                     <td>{pac.name}</td>
                                     <td>{pac.lastName} </td>
                                     <td>{pac.DNI}</td>
+                                    <td>{pac.celular}</td>
                                     <td>{pac.email}</td>
+                                    <td>{pac.direccion}</td>
+                                    <td>{pac.nSocio}</td>
+                                    <td></td>
                                 </tr>
                             ))}
                         </tbody>
