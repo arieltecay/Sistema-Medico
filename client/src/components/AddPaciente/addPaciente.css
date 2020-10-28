@@ -1,0 +1,38 @@
+.borderForm{
+    background: whitesmoke;
+    height: auto;
+    align-content: center;
+}
+form{
+    width:75%;
+	padding:16px;
+	border-radius:10px;
+	margin:auto;
+	background-color:#f0f0f0;
+}
+.botonAgregar{
+    display: flex;
+    padding-top: 2rem;
+    justify-content: center;
+}
+.datosPersonales{
+    display: flex;
+    padding-bottom: 1rem;
+    justify-content: center;
+    font-size: 24px;
+}
+.carnet{
+    display: flex;
+    padding-bottom: 1rem;
+    justify-content: center;
+    font-size: 24px;
+}
+.buttonGroup{
+    display: flex;
+    justify-content: center;
+    padding-right: 5rem;
+}
+.date{
+    width: 26%;
+    font-size: 20px;
+}

@@ -1,4 +1,7 @@
-function FormExample() {
+import { Form, Button, InputGroup, Col } from 'react-bootstrap';
+import React, {useState} from 'react'
+import './Prueba.css'
+export default function FormExample() {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -86,5 +89,3 @@ function FormExample() {
     </Form>
   );
 }
-
-render(<FormExample />);

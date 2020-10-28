@@ -12,10 +12,14 @@ export function getPacientes() {
 }
 
 // aca van los actions del POST/CREATE
-
-
-
-
+export function createPaciente(values) {
+    console.log(values);
+    return function (dispatch) {
+        axios.post(`${C.SERVER_ADDRESS}/paciente/`, values)
+            .then((res) => { dispatch({ type: C.CREATE_PACIENTE, payload: res.data }) })
+            .catch((error) => alert(error, "error"));
+    }
+}
 // aca van los actions del UPDATE/MODIFICAR
 
 
