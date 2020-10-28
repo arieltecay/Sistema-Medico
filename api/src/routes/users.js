@@ -16,6 +16,10 @@ server.get('/:id', (req, res) => {
     .then((users) => { res.send(users); })
     .catch((err) => res.status(400).json({ err }));
 })
+//Prueba de funcionamiento
+server.get("/set", (req,res)=> {
+  console.log("Prueba ");
+})
 
 //ruta para crear usuario
 server.post("/", (req, res) => {

@@ -34,6 +34,12 @@ module.exports = (sequelize) => {
         type:DataTypes.STRING,
         allowNull: true
       },
+      genero:{
+        type: DataTypes.STRING
+      },
+      birthday:{
+        type:DataTypes.STRING
+      },
       nSocio: {
         type: DataTypes.INTEGER,
         unique: true,
