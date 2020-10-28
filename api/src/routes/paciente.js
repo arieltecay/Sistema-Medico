@@ -1,8 +1,26 @@
 const server = require("express").Router();
 const { Paciente, Historyclinic } = require('../db')
-// const { Op } = require("sequelize");
+const { Op } = require("sequelize");
 const sequelize = require("sequelize");
-const Op = sequelize.op
+
+//Ruta que busca un paciente segun campo de busqueda
+server.get("/search", (req, res) => {
+  const { query } = req.query;
+  if (!query) return res.send("an unexpected error occurred");
+  Paciente.findAll({
+    where: {
+      [Op.or]: {
+        name: { [Op.iLike]: `%${query}%` },
+        lastName: { [Op.iLike]: `%${query}%` },
+        DNI: { [Op.iLike]: `%${query}%` },
+      },
+    },
+  })
+    .then((pacientes) => {
+      res.send(pacientes);
+    })
+    .catch(() => res.send("an unexpected error occurred"));
+});
 
 //Ruta que devuelve todos los pacientes
 server.get("/", (req, res) => {
@@ -18,16 +36,11 @@ server.get("/:id", (req, res) => {
   })
     .then((pacientes) => res.send(pacientes))
     .catch((e) => res.status(400).json(e))
-  // console.log(req.params.id);
 })
-//Ruta que busca un paciente segun campo de busqueda
-server.get("/ariel", (req,res) => {
-  res.json("Hola Mundo")
-})
+
 
 //ruta para crear paciente
 server.post("/", (req, res) => {
-  // console.log(req.body);
   Paciente.create({
     name: req.body.name,
     lastName: req.body.lastName,
@@ -36,6 +49,8 @@ server.post("/", (req, res) => {
     nSocio: req.body.nSocio,
     direccion: req.body.direccion,
     celular: req.body.celular,
+    birthday: req.body.birthday,
+    genero: req.body.genero
   }).then(paciente => {
     res.status(200).send("Agregado Satisfactoriamente")
   }).catch(err => res.send(err));
