@@ -11,6 +11,14 @@ export function getPacientes() {
     }
 }
 
+export function searchPacientes(value) {
+    return function (dispatch) {
+        axios.get(`${C.SERVER_ADDRESS}/paciente/search/?query=${value}`)
+            .then((res) => { dispatch({ type: C.SEARCH_PACIENTES, payload: res.data }) })
+            .catch((error) => alert(error, "error"));
+    }
+}
+
 // aca van los actions del POST/CREATE
 export function createPaciente(values) {
     console.log(values);
