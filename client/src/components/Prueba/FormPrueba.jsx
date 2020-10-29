@@ -6,7 +6,7 @@ export default function FormPrueba() {
 
     return (
         <div>
-            <OneForm />
+            <h1>arielte ca</h1>
         </div>
     )
 }

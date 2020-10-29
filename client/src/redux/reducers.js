@@ -14,6 +14,8 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state, paciente: state.paciente.concat(action.payload),
             }
+        } case C.SEARCH_PACIENTES: {
+            return { ...state, pacientes: action.payload }
         }
         default: return state;
     }
