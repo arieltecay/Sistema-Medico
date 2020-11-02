@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextField, Grid, Radio } from '@material-ui/core'
+import {  Grid, Radio } from '@material-ui/core'
 import { useDispatch } from "react-redux";
 import { createPaciente } from '../../redux/actions'
 import swal from 'sweetalert';
@@ -42,11 +42,11 @@ export default function () {
             button: "OK!",
         });
     }
-    
+
     return (
         <div className="tableBack">
             <Grid container className="row justify-content-center">
-                <form  noValidate autoComplete="off">
+                <form onSubmit={() => cargarDatos(datos)} noValidate autoComplete="off">
                     <div className="datosPersonales">
                         <div className="badge badge-primary text-wrap bd-highlight">
                             Agregar Datos Personales
@@ -54,83 +54,70 @@ export default function () {
                     </div>
                     <Grid item md={12} className="mb-4">
                         <div>
-                            <TextField
+                            <input
                                 required
                                 className="mr-4"
-                                id="outlined-basic"
                                 name="name"
                                 onChange={handleInputChange}
-                                label="Nombre"
-                                variant="outlined" />
-                            <TextField
+                                placeholder="Nombre"
+                            />
+                            <input
                                 required
-                                id="outlined-basic"
                                 className="mr-4"
-                                label="Apellido"
+                                placeholder="Apellido"
                                 name="lastName"
                                 onChange={handleInputChange}
-                                variant="outlined" />
-                            <TextField
+                            />
+                            <input
                                 required
-                                id="outlined-basic"
-                                label="DNI"
+                                placeholder="DNI"
                                 name="DNI"
                                 onChange={handleInputChange}
-                                variant="outlined" />
+                            />
                         </div>
                     </Grid>
                     <Grid item md={12} className="mb-4">
                         <div >
-                            <TextField
+                            <input
                                 required
-                                id="date"
                                 name="birthday"
-                                label="Nacimiento"
+                                placeholder="Nacimiento"
                                 type="date"
                                 onChange={handleInputChange}
                                 className="date"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
                             />
-                            <TextField
+                            <input
                                 className="mr-4 ml-4"
-                                id="outlined-basic"
-                                label="E-mail"
+                                placeholder="E-mail"
                                 name="email"
                                 onChange={handleInputChange}
-                                variant="outlined" />
-                            <TextField
-                                id="outlined-basic"
-                                label="Dirección"
+                            />
+                            <input
+                                placeholder="Dirección"
                                 name="direccion"
                                 onChange={handleInputChange}
-                                variant="outlined" />
+                            />
                         </div>
                     </Grid>
                     <Grid item md={12} className="mb-4">
                         <div className="buttonGroup">
-                            <TextField
+                            <input
                                 type="number"
-                                id="outlined-basic"
-                                className="carnet mr-4"
-                                label="N° de Carnet"
+                                placeholder="N° de Carnet"
                                 name="nSocio"
                                 onChange={handleInputChange}
-                                variant="outlined" />
-                            <TextField
+                            />
+                            <input
                                 type="number"
-                                id="outlined-basic"
-                                className="carnet mr-4"
-                                label="Celular o Fijo"
+                                className="ml-3"
+                                placeholder="Celular o Fijo"
                                 name="celular"
                                 onChange={handleInputChange}
-                                variant="outlined" />
+                            />
                             <Radio
                                 checked={selectedValue === 'a'}
                                 onChange={handleInputChange}
                                 color="primary"
-                                className="ml-4"
                                 name="genero"
                                 value="a"
                                 label="Male"
@@ -154,12 +141,12 @@ export default function () {
                                 name="genero"
                                 inputProps={{ 'aria-label': 'C' }}
                             />Otro
-                                </div>
+                        </div>
                         <div className="botonAgregar">
                             <button
-                                type="button"
+                                type="submit"
                                 className="btn btn-outline-success"
-                                onClick={() => cargarDatos(datos)}
+                                onSubmit={() => cargarDatos(datos)}
                             >Cargar</button>
                         </div>
                     </Grid>
