@@ -1,38 +1,32 @@
-.borderForm{
-    background: whitesmoke;
-    height: auto;
-    align-content: center;
-}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }  
 form{
     width:60%;
+    height: 350px;
+    justify-content: space-around;
 	padding:16px;
 	border-radius:10px;
 	margin:auto;
 	background-color:#f0f0f0;
 }
-.botonAgregar{
-    display: flex;
-    padding-top: 2rem;
-    justify-content: center;
-}
 .datosPersonales{
     display: flex;
     padding-bottom: 1rem;
-    justify-content: center;
+    justify-content: space-around;
     font-size: 24px;
 }
-.carnet{
-    display: flex;
-    margin-left: 10rem;
-    font-size: 12px;
-}
-.buttonGroup{
-    display: flex;
-    justify-content: space-between;
-    padding-right: 5rem;
-}
 .date{
-    width: 29%;
-    font-size: 15px;
-    height: 2rem;
+    font-size: 18px;
+    width: 13rem;
+    height: 1rem;
+    padding-right: 1rem;
+    color: #808080;
+}
+  
+.err{
+    border: red 5px solid;
+    border-radius: 8px;
 }
