@@ -10,6 +10,13 @@ export function getPacientes() {
             .catch((error) => alert(error, "error"));
     }
 }
+export function getPaciente(pacienteId) {
+    return function (dispatch) {
+      axios.get(`${C.SERVER_ADDRESS}/paciente/${pacienteId}`)
+        .then((res) => { dispatch({ type: C.GET_PACIENTE, payload: res.data }) })
+        .catch((error) => alert(error, "error"));
+    }
+  }
 
 export function searchPacientes(value) {
     return function (dispatch) {
@@ -29,7 +36,14 @@ export function createPaciente(values) {
     }
 }
 // aca van los actions del UPDATE/MODIFICAR
-
+export function updatePaciente(pacienteId, paciente) {
+    return function (dispatch) {
+      axios.put(`${C.SERVER_ADDRESS}/paciente/${pacienteId}`, paciente)
+        .then((res) => { dispatch({ type: C.UPDATE_PACIENTE, payload: paciente }) })
+        .then(() => console.log("Se modifico el producto"))
+        .catch((error) => alert(error, "error"));
+    }
+  }
 
 
 

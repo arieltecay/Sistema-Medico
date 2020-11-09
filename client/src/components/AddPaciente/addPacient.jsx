@@ -5,11 +5,9 @@ import { createPaciente } from '../../redux/actions'
 import swal from 'sweetalert';
 import './addPaciente.css'
 
-/* eslint-disable */
-// const passRE = /^[A-Za-z0-9_\.\-\@\#\!\%\^\$]{4}$/;
 const nameRE = /^[a-z]{2,25}$/i;
 const DNIRE = /^[0-9]{8}$/;
-const emailRE = /^([a-zA-Z0-9_\.\-]+)@([a-zA-Z0-9_\.\-]+)\.([a-zA-Z]{2,5})$/;
+const emailRE = /^([a-zA-Z0-9_.-]+)@([a-zA-Z0-9_.-]+)\.([a-zA-Z]{2,5})$/;
 const mobileRE = /^[0-9]{10}$/;
 const nSocioRE = /^[0-9]{5}$/;
 
@@ -52,10 +50,14 @@ export default function () {
         return () => {
             clearTimeout(timer);
         };
-    }, [datos.nameError, datos.emailError, datos.DNIError, datos.celularError, datos.nSocioError]);
+    },
+        [datos.nameError,
+        datos.emailError,
+        datos.DNIError,
+        datos.celularError,
+        datos.nSocioError]);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
         setDatos({
             ...datos,
             [e.target.name]: e.target.value,
@@ -80,11 +82,6 @@ export default function () {
         }
     };
 
-
-    /*         
-                userValidation(emailRE, datos.email, "emailRE") &&
-                userValidation(mobileRE, datos.mobile, "celularError") &&
-                userValidation(nSocioRE, datos.nSocio, "nSocioError") */
     const handleSubmit = () => {
         if (userValidation(nameRE, datos.name, "nameError") &&
             userValidation(DNIRE, datos.DNI, "DNIError") &&
@@ -95,8 +92,8 @@ export default function () {
         ) {
             dispatch(createPaciente(datos))
             console.log(dispatch(createPaciente(datos)));
-            // mostrarAlert()
-            alert("form submitted");
+            mostrarAlert()
+            // alert("form submitted");
         }
     };
     const mostrarAlert = () => {
@@ -152,10 +149,9 @@ export default function () {
                         onChange={handleInputChange}
                     />
                     <input
-                        className="mr-4"
                         placeholder="E-mail"
                         name="email"
-                        className={datos.emailError ? 'err' : null}
+                        className={datos.emailError ? 'err' : 'mr-4'}
                         onChange={handleInputChange}
                     />
                     <input
@@ -218,7 +214,7 @@ export default function () {
                     {datos.celularError && <p className="alert alert-danger" role="alert">Celular {datos.celularError}</p>}
 
                 </div>
-                <div className="pt-2">
+                <div className="pt-4 btnCargar text-center">
                     <button
                         type="button"
                         onClick={() => handleSubmit()}

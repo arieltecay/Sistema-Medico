@@ -4,19 +4,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPacientes } from '../../redux/actions'
 import Search from '../Search/Search'
 import AddPacient from '../AddPaciente/addPacient'
+import MydModalWithGrid from '../EditPaciente/EditPaciente'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import './Paciente.css'
-
 
 export default function Paciente() {
     const dispatch = useDispatch();
     const pacientes = useSelector(store => store.pacientes)
     const [addPaciente, setAddPaciente] = useState(false)
     const [showPaciente, setShowPaciente] = useState(false)
+    const [modalShow, setModalShow] = useState(false);
+    const [datos, setDatos] = useState({
+        name: '',
+        lastName: '',
+        DNI: '',
+        email: '',
+        celular: '',
+        direccion: '',
+        genero: '',
+        birthday: '',
+        nSocio: '',
+        nameError: '',
+        emailError: '',
+        DNIError: '',
+        celularError: '',
+        nSocioError: '',
+    })
+    console.log(modalShow);
+    const seleccionarPaciente = (elemento) => {
+        setDatos(elemento)
+        setModalShow(true)
+    }
 
     const statePaciente = () => {
         setAddPaciente(!addPaciente)
         setShowPaciente(false)
-
     }
 
     const stateShowPaciente = () => {
@@ -27,6 +50,7 @@ export default function Paciente() {
 
     return (
         <div className="pt-5">
+            {modalShow && <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} datos={datos} />}
             <div className="text-center pt-3 pb-3 ">
                 <button
                     onClick={() => stateShowPaciente()}
@@ -45,7 +69,7 @@ export default function Paciente() {
                 </div>
             </div>
             {showPaciente &&
-                <div>  <div className="search"><Search/> </div>
+                <div>  <div className="search"><Search /> </div>
                     <div className="container">
                         <Table className="table " striped bordered hover size="sm" responsive>
                             <thead size="sm">
@@ -62,7 +86,7 @@ export default function Paciente() {
                             </thead>
                             <tbody>
                                 {pacientes.map((pac) => (
-                                    <tr key={pac.id} onClick={() => alert(pac.name)}>
+                                    <tr key={pac.id}>
                                         <td>{pac.name}</td>
                                         <td>{pac.lastName} </td>
                                         <td>{pac.DNI}</td>
@@ -70,7 +94,15 @@ export default function Paciente() {
                                         <td>{pac.email}</td>
                                         <td>{pac.direccion}</td>
                                         <td>{pac.nSocio}</td>
-                                        <td></td>
+                                        <td>
+                                            <button
+                                                className="btn btn-primary btn-sm"
+                                                onClick={() => seleccionarPaciente(pac)}
+                                            >
+                                                <FontAwesomeIcon icon={faTrashAlt} /> Edit</button>
+                                            {" "}
+                                            <button className="btn btn-danger btn-sm"> <FontAwesomeIcon icon={faTrashAlt} /> Delete</button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -78,6 +110,7 @@ export default function Paciente() {
                     </div>
                 </div>
             }
+
         </div>
     )
 }
