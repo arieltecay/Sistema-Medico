@@ -55,6 +55,28 @@ server.post("/", (req, res) => {
     res.status(200).send("Agregado Satisfactoriamente")
   }).catch(err => res.send(err));
 });
+//Ruta para editar los datos personales del paciente
+server.put("/:id", (req, res) => {
+  Paciente.findOne({ where: { id: req.params.id } })
+    .then((paciente) => {
+      paciente
+        .update({
+          name: req.body.name,
+          lastName: req.body.lastName,
+          DNI: req.body.DNI,
+          email: req.body.email,
+          nSocio: req.body.nSocio,
+          direccion: req.body.direccion,
+          celular: req.body.celular,
+          birthday: req.body.birthday,
+          genero: req.body.genero
+        })
+        .then((p) => res.status(200).json(p));
+    })
+    .catch((error) => {
+      res.status(400).json(error);
+    });
+});
 
 //Ruta que permite agregar un historial clinico a un paciente
 server.post("/:id/historyClinic", (req, res) => {

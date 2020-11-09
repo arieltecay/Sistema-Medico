@@ -5,10 +5,10 @@
   }  
 form{
     width:60%;
-    height: 350px;
+    height: 300px;
     justify-content: space-around;
 	padding:16px;
-	border-radius:10px;
+    border-radius:10px red;
 	margin:auto;
 	background-color:#f0f0f0;
 }
@@ -29,4 +29,8 @@ form{
 .err{
     border: red 5px solid;
     border-radius: 8px;
+}
+.btnCargar{
+    display: flex;
+    justify-content: center;
 }

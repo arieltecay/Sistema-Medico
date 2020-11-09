@@ -9,6 +9,9 @@ function rootReducer(state = initialState, action) {
         case C.GET_PACIENTES: {
             return { ...state, pacientes: action.payload }
         }
+        case C.GET_PACIENTE: {
+            return { ...state, pacientes: action.payload }
+        }
         case C.CREATE_PACIENTE: {
             console.log(state);
             return {
@@ -16,6 +19,9 @@ function rootReducer(state = initialState, action) {
             }
         } case C.SEARCH_PACIENTES: {
             return { ...state, pacientes: action.payload }
+        }
+        case C.UPDATE_PACIENTE:{
+            return {...state, paciente: action.payload}
         }
         default: return state;
     }
