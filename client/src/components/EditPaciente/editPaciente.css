@@ -1,14 +1,18 @@
 .form{
     display: flex;
-    width: 450px;
-    height: 250px;
+    padding-top: 20px;
+    width: 700px;
+    height: 300px;
 
 }
-.container{
+.editar{
+    background-color: blue;
     display: flex;
+    justify-content: center;
     align-content: center;
-    width: 400px;
-    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    margin-left: 35%;
 }
 .show-grid{
     width: 500px;
