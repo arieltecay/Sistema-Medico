@@ -1,19 +1,25 @@
 .form{
     display: flex;
+    background-color: white;
     padding-top: 20px;
     width: 700px;
-    height: 300px;
+    height: 260px;
 
 }
 .editar{
-    background-color: blue;
     display: flex;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    align-items: center;
     margin-left: 35%;
 }
-.show-grid{
-    width: 500px;
+
+.date{
+    height: 1rem;
+    color: black;
+}
+.radio{
+    display: flex;
+    justify-content: center;
+}
+.boton{
+    display: flex;
+    justify-content: center;
 }

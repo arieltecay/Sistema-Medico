@@ -1,12 +1,17 @@
 import { Radio } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
+import { Redirect } from "react-router";
+import { useDispatch } from 'react-redux';
 import './editPaciente.css'
 import { Button, Modal } from 'react-bootstrap'
+import { updatePaciente } from '../../redux/actions'
 
 export default function MydModalWithGrid(props) {
   const idPaciente = props.datos.id
+  const dispatch = useDispatch();
   const [input, setInput] = useState(null);
-  const [selectedValue, setSelectedValue] = useState('b');
+  const [selectedValue] = useState();
+  const [redirect, setRedirect] = useState(false);
 
   function handleInputChange(e) {
     setInput({
@@ -23,7 +28,11 @@ export default function MydModalWithGrid(props) {
         setInput(data);
       });
   }, []);
-  console.log(input);
+  function sendPaciente(e, input) {
+    e.preventDefault();
+    dispatch(updatePaciente(idPaciente, input))
+  }
+
   return (
     input && (
       <div >
@@ -34,7 +43,16 @@ export default function MydModalWithGrid(props) {
             </Modal.Title>
           </Modal.Header>
           <div >
-            <form className='form' autoComplete='off'>
+            <form
+              className='form'
+              autoComplete='off'
+              onSubmit={(e) => {
+                sendPaciente(e, input);
+                setTimeout(function () {
+                  setRedirect(true);
+                }, 500);
+              }}
+            >
               <div >
                 <div>
                   <input
@@ -80,7 +98,7 @@ export default function MydModalWithGrid(props) {
                   <input
                     type="text"
                     placeholder='Domicilio'
-                    name="domicilio"
+                    name="direccion"
                     value={input.domicilio}
                     className='ml-3'
                     onChange={handleInputChange}
@@ -88,6 +106,7 @@ export default function MydModalWithGrid(props) {
                 </div>
                 <div className='mt-3'>
                   <input
+                    className='date'
                     type="date"
                     name="birthday"
                     value={input.birthday}
@@ -101,45 +120,51 @@ export default function MydModalWithGrid(props) {
                     onChange={handleInputChange}
                     className='ml-3'
                   />
-                  <Radio
-                        checked={selectedValue === 'a'}
-                        onChange={handleInputChange}
-                        color="primary"
-                        name="genero"
-                        value="a"
-                        label="Male"
-                        inputProps={{ 'aria-label': 'A' }}
-                    />Masculino
-                            <Radio
-                        checked={selectedValue === 'b'}
-                        onChange={handleInputChange}
-                        color="primary"
-                        value="b"
-                        label="Male"
-                        name="genero"
-                        inputProps={{ 'aria-label': 'B' }}
-                    />Femenino
-                            <Radio
-                        checked={selectedValue === 'c'}
-                        onChange={handleInputChange}
-                        color="primary"
-                        value="c"
-                        label="Male"
-                        name="genero"
-                        inputProps={{ 'aria-label': 'C' }}
-                    />Otro
-                </div>
+                  <div className='radio pt-3'>
 
+                    <Radio
+                      checked={selectedValue === 'a'}
+                      onChange={handleInputChange}
+                      color="primary"
+                      name="genero"
+                      value="a"
+                      label="Male"
+                      inputProps={{ 'aria-label': 'A' }}
+                    />Masculino
+                     <Radio
+                      checked={selectedValue === 'b'}
+                      onChange={handleInputChange}
+                      color="primary"
+                      value="b"
+                      label="Male"
+                      name="genero"
+                      inputProps={{ 'aria-label': 'B' }}
+                    />Femenino
+                    <Radio
+                      checked={selectedValue === 'c'}
+                      onChange={handleInputChange}
+                      color="primary"
+                      value="c"
+                      label="Male"
+                      name="genero"
+                      inputProps={{ 'aria-label': 'C' }}
+                    />Otro
+                  </div>
+                  <div className='boton'>
+                    <button
+                      className="btn btn-primary"
+                      type="submit"
+                    >
+                      Editar
+            </button>
+                  </div>
+                </div>
               </div>
             </form>
           </div>
-
-          <Modal.Footer>
-            <Button className='btn btn-succes'>Save</Button>
-            <Button onClick={props.onHide}>Close</Button>
-          </Modal.Footer>
         </Modal>
+      </div >)
 
-      </div>)
+
   );
 }
