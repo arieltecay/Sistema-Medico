@@ -78,6 +78,20 @@ server.put("/:id", (req, res) => {
     });
 });
 
+//Ruta para eliminar un paciente a travez de un ID
+server.delete("/:id", (req, res) => {
+  Paciente.destroy({ where: { id: req.params.id } })
+    .then((deletedRecord) => {
+      if (deletedRecord === 1)
+        res.status(200).json({ message: "Se elimino el paciente" });
+      else res.status(400).json({ message: "Paciente no encontrado" });
+    })
+    .catch((error) => {
+      res.status(500).json(error);
+    });
+});
+
+
 //Ruta que permite agregar un historial clinico a un paciente
 server.post("/:id/historyClinic", (req, res) => {
   Historyclinic.create({

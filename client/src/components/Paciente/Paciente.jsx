@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { getPacientes } from '../../redux/actions'
+import { getPacientes, removePaciente } from '../../redux/actions'
 import Search from '../Search/Search'
 import AddPacient from '../AddPaciente/addPacient'
 import MydModalWithGrid from '../EditPaciente/EditPaciente'
+import Swal from 'sweetalert2'
 import Pagination from '../Paciente/Pagination'
 import Table from 'react-bootstrap/Table'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -58,6 +59,28 @@ export default function Paciente() {
         stateShowPaciente();
         setLoading(false)
     }, [])
+
+    function eliminar(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(removePaciente(id))
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+              setShowPaciente(false)
+            }
+          })
+    }
 
     //Get Currents Pacients
     const indexOfLast = currentPage * pacientePerPage;
@@ -132,7 +155,7 @@ export default function Paciente() {
                                             {"  "}
                                             <button
                                                 className="btn btn-danger btn-sm"
-                                                onClick={() => alert('Deleted')}
+                                                onClick={() => eliminar(pac.id)}
                                             >
                                                 <FontAwesomeIcon icon={faTrashAlt} /> Delete</button>
                                         </td>

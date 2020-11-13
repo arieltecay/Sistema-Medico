@@ -45,16 +45,12 @@ export function updatePaciente(idPaciente, paciente) {
       .catch((error) => alert(error, "error"));
   }
 }
-/* export function updatePaciente(pacienteId, paciente) {
-  console.log(paciente);
-    return function (dispatch) {
-      axios.put(`${C.SERVER_ADDRESS}/paciente/${pacienteId}`, paciente)
-        .then((res) => { dispatch({ type: C.UPDATE_PACIENTE, payload: paciente }) })
-        .then(() => console.log("Se modifico el producto"))
-        .catch((error) => alert(error, "error"));
-    }
-  } */
-
-
-
+export function removePaciente(pacienteId) {
+  return function (dispatch) {
+    axios.delete(`${C.SERVER_ADDRESS}/paciente/${pacienteId}`)
+      .then((res) => { dispatch({ type: C.REMOVE_PACIENTE, payload: pacienteId }) })
+      .then(() => console.log("Se elimino el paciente"))
+      .catch((error) => console.log(error, "error"));
+  }
+}
 // aca van los actions del DELETE/REMOVE

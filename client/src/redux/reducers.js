@@ -23,6 +23,9 @@ function rootReducer(state = initialState, action) {
         case C.UPDATE_PACIENTE: {
             return { ...state, paciente: state.paciente.filter(paciente => paciente.id !== action.payload.id) }
         }
+        case C.REMOVE_PACIENTE: {
+            return { ...state, paciente: state.paciente.filter(paciente => paciente.id !== action.payload) }
+        }
         default: return state;
     }
 }
