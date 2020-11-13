@@ -12,6 +12,7 @@ export default function MydModalWithGrid(props) {
   const [input, setInput] = useState(null);
   const [selectedValue] = useState();
   const [redirect, setRedirect] = useState(false);
+  const [editar, setEditar] = useState(false)
 
   function handleInputChange(e) {
     setInput({
@@ -32,6 +33,10 @@ export default function MydModalWithGrid(props) {
     e.preventDefault();
     dispatch(updatePaciente(idPaciente, input))
   }
+  console.log(editar);
+  if (editar) {
+    return <Redirect to="/updateOk"/>;
+  }
 
   return (
     input && (
@@ -49,8 +54,8 @@ export default function MydModalWithGrid(props) {
               onSubmit={(e) => {
                 sendPaciente(e, input);
                 setTimeout(function () {
-                  setRedirect(true);
-                }, 500);
+                  setEditar(true);
+                }, 50);
               }}
             >
               <div >
@@ -99,7 +104,7 @@ export default function MydModalWithGrid(props) {
                     type="text"
                     placeholder='Domicilio'
                     name="direccion"
-                    value={input.domicilio}
+                    value={input.direccion}
                     className='ml-3'
                     onChange={handleInputChange}
                   />

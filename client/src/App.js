@@ -4,6 +4,7 @@ import Paciente from './components/Paciente/Paciente'
 import Home from './components/Home.jsx'
 import NavBar from './components/NavBar'
 import EditPaciente from './components/EditPaciente/EditPaciente'
+import UpdateOK from './components/UpdateOK'
 import Prueba from './components/Prueba/prueba'
 import './App.css'
 
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' component={Home} exact />
           <Route path='/prueba' component={Prueba} exact />
           <Route path='/paciente/:id' component={EditPaciente} exact />
+          <Route path='/updateOk' component={UpdateOK} exact />
         </Switch>
       </BrowserRouter>
     </div>
