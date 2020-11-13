@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import Table from 'react-bootstrap/Table'
 import { useDispatch, useSelector } from "react-redux";
 import { getPacientes } from '../../redux/actions'
 import Search from '../Search/Search'
 import AddPacient from '../AddPaciente/addPacient'
 import MydModalWithGrid from '../EditPaciente/EditPaciente'
+import Pagination from '../Paciente/Pagination'
+import Table from 'react-bootstrap/Table'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faUserEdit } from '@fortawesome/free-solid-svg-icons'
+
 import './Paciente.css'
+import { useEffect } from 'react';
 
 export default function Paciente() {
     const dispatch = useDispatch();
@@ -15,6 +18,10 @@ export default function Paciente() {
     const [addPaciente, setAddPaciente] = useState(false)
     const [showPaciente, setShowPaciente] = useState(false)
     const [modalShow, setModalShow] = useState(false);
+    const [loading, setLoading] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [pacientePerPage] = useState(10)
+
     const [datos, setDatos] = useState({
         name: '',
         lastName: '',
@@ -31,7 +38,6 @@ export default function Paciente() {
         celularError: '',
         nSocioError: '',
     })
-    console.log(modalShow);
     const seleccionarPaciente = (elemento) => {
         setDatos(elemento)
         setModalShow(true)
@@ -47,6 +53,18 @@ export default function Paciente() {
         setShowPaciente(!showPaciente)
         setAddPaciente(false)
     }
+    useEffect(() => {
+        setLoading(true)
+        stateShowPaciente();
+        setLoading(false)
+    }, [])
+
+    //Get Currents Pacients
+    const indexOfLast = currentPage * pacientePerPage;
+    const indexOfFirst = indexOfLast - pacientePerPage;
+    const currentPaciente = pacientes.slice(indexOfFirst, indexOfLast)
+    //Change Page
+    const paginate = pageNumber => setCurrentPage(pageNumber)
 
     return (
         <div className="pt-5">
@@ -69,11 +87,22 @@ export default function Paciente() {
                 </div>
             </div>
             {showPaciente &&
-                <div>  <div className="search"><Search /> </div>
+                <div>
+                    <div className="search">
+                        <Search />
+                    </div>
+                    <div className='pagination'>
+                        <Pagination
+                            postsPerPage={pacientePerPage}
+                            totalPosts={pacientes.length}
+                            paginate={paginate}
+                            className='pagination-button'
+                        />
+                    </div>
                     <div className="container">
-                        <Table className="table " striped bordered hover size="sm" responsive>
+                        <Table className="table table-sm" striped bordered hover size="sm" responsive>
                             <thead size="sm">
-                                <tr>
+                                <tr className='cabecera'>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
                                     <th>DNI</th>
@@ -85,7 +114,7 @@ export default function Paciente() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pacientes.map((pac) => (
+                                {currentPaciente.map((pac) => (
                                     <tr key={pac.id}>
                                         <td>{pac.name}</td>
                                         <td>{pac.lastName} </td>
@@ -94,14 +123,18 @@ export default function Paciente() {
                                         <td>{pac.email}</td>
                                         <td>{pac.direccion}</td>
                                         <td>{pac.nSocio}</td>
-                                        <td>
+                                        <td >
                                             <button
                                                 className="btn btn-primary btn-sm"
                                                 onClick={() => seleccionarPaciente(pac)}
                                             >
-                                                <FontAwesomeIcon icon={faTrashAlt} /> Edit</button>
-                                            {" "}
-                                            <button className="btn btn-danger btn-sm"> <FontAwesomeIcon icon={faTrashAlt} /> Delete</button>
+                                                <FontAwesomeIcon icon={faUserEdit} /> Edit</button>
+                                            {"  "}
+                                            <button
+                                                className="btn btn-danger btn-sm"
+                                                onClick={() => alert('Deleted')}
+                                            >
+                                                <FontAwesomeIcon icon={faTrashAlt} /> Delete</button>
                                         </td>
                                     </tr>
                                 ))}

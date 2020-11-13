@@ -5,3 +5,16 @@
     padding-top: 1rem;
     padding-bottom: 2rem;
 }
+.cabecera{
+    text-align: center;
+    background: cornflowerblue;    
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    
+}
+.pagination-button:hover{
+    cursor: pointer;
+}
