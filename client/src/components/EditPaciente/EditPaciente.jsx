@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from "react-router";
 import { useDispatch } from 'react-redux';
 import './editPaciente.css'
-import { Button, Modal } from 'react-bootstrap'
+import {  Modal } from 'react-bootstrap'
 import { updatePaciente } from '../../redux/actions'
 
 export default function MydModalWithGrid(props) {
@@ -11,7 +11,6 @@ export default function MydModalWithGrid(props) {
   const dispatch = useDispatch();
   const [input, setInput] = useState(null);
   const [selectedValue] = useState();
-  const [redirect, setRedirect] = useState(false);
   const [editar, setEditar] = useState(false)
 
   function handleInputChange(e) {
@@ -28,12 +27,11 @@ export default function MydModalWithGrid(props) {
       .then(function (data) {
         setInput(data);
       });
-  }, []);
+  }, [idPaciente]);
   function sendPaciente(e, input) {
     e.preventDefault();
     dispatch(updatePaciente(idPaciente, input))
   }
-  console.log(editar);
   if (editar) {
     return <Redirect to="/updateOk"/>;
   }
