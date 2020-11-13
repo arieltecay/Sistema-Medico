@@ -1,5 +1,6 @@
 import { Radio } from '@material-ui/core'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import useFetch from '../Hooks/useFetch'
 import { Redirect } from "react-router";
 import { useDispatch } from 'react-redux';
 import './editPaciente.css'
@@ -9,25 +10,17 @@ import { updatePaciente } from '../../redux/actions'
 export default function MydModalWithGrid(props) {
   const idPaciente = props.datos.id
   const dispatch = useDispatch();
-  const [input, setInput] = useState(null);
   const [selectedValue] = useState();
   const [editar, setEditar] = useState(false)
-
+  
   function handleInputChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   }
-  useEffect(() => {
-    fetch("http://localhost:3001/paciente/" + idPaciente)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        setInput(data);
-      });
-  }, [idPaciente]);
+  const {input, setInput} = useFetch("http://localhost:3001/paciente/" + idPaciente); //Custom HOOK
+
   function sendPaciente(e, input) {
     e.preventDefault();
     dispatch(updatePaciente(idPaciente, input))
@@ -35,6 +28,7 @@ export default function MydModalWithGrid(props) {
   if (editar) {
     return <Redirect to="/updateOk"/>;
   }
+
 
   return (
     input && (
