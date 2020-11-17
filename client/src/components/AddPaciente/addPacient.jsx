@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Radio } from '@material-ui/core'
 import { useDispatch } from "react-redux";
 import { createPaciente } from '../../redux/actions'
+import { Paper } from '@material-ui/core'
 import swal from 'sweetalert';
 import './addPaciente.css'
 
@@ -93,7 +94,6 @@ export default function () {
             dispatch(createPaciente(datos))
             console.log(dispatch(createPaciente(datos)));
             mostrarAlert()
-            // alert("form submitted");
         }
     };
     const mostrarAlert = () => {
@@ -107,121 +107,133 @@ export default function () {
 
     return (
         <div className="tableBack">
-            <form noValidate autoComplete="off">
-                <div className="datosPersonales">
-                    <div className="badge badge-primary text-wrap bd-highlight">
-                        Agregar Datos Personales
+            <Paper
+                className="paper"
+                elevation={14}>
+                <form noValidate autoComplete="off">
+                    <div className="datosPersonales">
+                        <div className="badge badge-primary text-wrap bd-highlight">
+                            Agregar Datos Personales
                         </div>
-                </div>
-                <div className="pt-2">
-                    <input
-                        required
-                        type="text"
-                        value={datos.name}
-                        onChange={(e) => handleInputChange(e)}
-                        placeholder="Nombre"
-                        className={datos.nameError ? "err" : "mr-4"}
-                        name="name"
-                    />
+                    </div>
+                    <div className='containers'>
+                        <div>
+                            <input
+                                required
+                                type="text"
+                                value={datos.name}
+                                onChange={(e) => handleInputChange(e)}
+                                placeholder="Nombre"
+                                className={datos.nameError ? "err" : ""}
+                                name="name"
+                            />
 
-                    <input
-                        required
-                        className="mr-4"
-                        placeholder="Apellido"
-                        name="lastName"
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        required
-                        placeholder="DNI"
-                        name="DNI"
-                        onChange={handleInputChange}
-                        className={datos.DNIError ? 'err' : null}
-                    />
-                </div>
-                <div className="pt-4" >
-                    <input
-                        required
-                        name="birthday"
-                        placeholder="Nacimiento"
-                        type="date"
-                        className="date mr-4"
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        placeholder="E-mail"
-                        name="email"
-                        className={datos.emailError ? 'err' : 'mr-4'}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        placeholder="Dirección"
-                        name="direccion"
-                        onChange={handleInputChange}
-                        className="ml-4"
-                    />
-                </div>
-                <div className="buttonGroup pt-3">
-                    <input
-                        type="number"
-                        placeholder="N° de Carnet"
-                        className={datos.nSocioError ? 'err' : "mr-2"}
-                        name="nSocio"
-                        onChange={handleInputChange}
-                    />
+                            <input
+                                required
+                                className="medio"
+                                placeholder="Apellido"
+                                name="lastName"
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className='arriba'>
+                            <input
+                                required
+                                placeholder="DNI"
+                                name="DNI"
+                                onChange={handleInputChange}
+                                className={datos.DNIError ? 'err' : ''}
+                            />
+                            <input
+                                required
+                                name="birthday"
+                                placeholder="Nacimiento"
+                                type="date"
+                                className="date medio"
+                                onChange={handleInputChange}
+                            />
+                        </div>
 
-                    <input
-                        type="number"
-                        className={datos.celularError ? 'err' : "mr-2"}
-                        placeholder="Celular o Fijo"
-                        name="celular"
-                        onChange={handleInputChange}
+                        <div className='arriba'>
+                            <input
+                                placeholder="E-mail"
+                                name="email"
+                                className={datos.emailError ? 'err' : ''}
+                                onChange={handleInputChange}
+                            />
+                            <input
+                                placeholder="Dirección"
+                                name="direccion"
+                                onChange={handleInputChange}
+                                className="medio"
+                            />
+                        </div>
+                        <div className='arriba'>
+                            <input
+                                type="number"
+                                placeholder="N° de Carnet"
+                                className={datos.nSocioError ? 'err' : ""}
+                                name="nSocio"
+                                onChange={handleInputChange}
+                            />
 
-                    />
-                    <Radio
-                        checked={selectedValue === 'a'}
-                        onChange={handleInputChange}
-                        color="primary"
-                        name="genero"
-                        value="a"
-                        label="Male"
-                        inputProps={{ 'aria-label': 'A' }}
-                    />Masculino
+                            <input
+                                type="number"
+                                className={datos.celularError ? 'err' : "medio"}
+                                placeholder="Celular o Fijo"
+                                name="celular"
+                                onChange={handleInputChange}
+
+                            />
+                        </div>
+                    </div>
+                    <div className='radio' >
+                        <Radio
+                            checked={selectedValue === 'a'}
+                            onChange={handleInputChange}
+                            color="primary"
+                            name="genero"
+                            value="a"
+                            label="Male"
+                            inputProps={{ 'aria-label': 'A' }}
+                        />Masculino
                             <Radio
-                        checked={selectedValue === 'b'}
-                        onChange={handleInputChange}
-                        color="primary"
-                        value="b"
-                        label="Male"
-                        name="genero"
-                        inputProps={{ 'aria-label': 'B' }}
-                    />Femenino
+                            checked={selectedValue === 'b'}
+                            onChange={handleInputChange}
+                            color="primary"
+                            value="b"
+                            label="Male"
+                            name="genero"
+                            inputProps={{ 'aria-label': 'B' }}
+                        />Femenino
                             <Radio
-                        checked={selectedValue === 'c'}
-                        onChange={handleInputChange}
-                        color="primary"
-                        value="c"
-                        label="Male"
-                        name="genero"
-                        inputProps={{ 'aria-label': 'C' }}
-                    />Otro
-                </div>
-                <div >
-                    {datos.nameError && <p className="alert alert-danger" role="alert">Nombre {datos.nameError}</p>}
-                    {datos.DNIError && <p className="alert alert-danger" role="alert">DNI{datos.DNIError}</p>}
-                    {datos.emailError && <p className="alert alert-danger" role="alert">Email {datos.emailError}</p>}
-                    {datos.nSocioError && <p className="alert alert-danger" role="alert"> N° de Socio {datos.nSocioError}</p>}
-                    {datos.celularError && <p className="alert alert-danger" role="alert">Celular {datos.celularError}</p>}
+                            checked={selectedValue === 'c'}
+                            onChange={handleInputChange}
+                            color="primary"
+                            value="c"
+                            label="Male"
+                            name="genero"
+                            inputProps={{ 'aria-label': 'C' }}
+                        />Otro
+                        </div>
+                    <div >
+                        {datos.nameError && <p className="alert alert-danger" role="alert">Nombre {datos.nameError}</p>}
+                        {datos.DNIError && <p className="alert alert-danger" role="alert">DNI{datos.DNIError}</p>}
+                        {datos.emailError && <p className="alert alert-danger" role="alert">Email {datos.emailError}</p>}
+                        {datos.nSocioError && <p className="alert alert-danger" role="alert"> N° de Socio {datos.nSocioError}</p>}
+                        {datos.celularError && <p className="alert alert-danger" role="alert">Celular {datos.celularError}</p>}
 
-                </div>
-                <div className="pt-4 btnCargar text-center">
-                    <button
-                        type="button"
-                        onClick={() => handleSubmit()}
-                        className="btn btn-outline-success"
-                    >Cargar</button>
-                </div>
-            </form>
+                    </div>
+                    <div className="boton pt-4">
+                        <button
+                            type="button"
+                            onClick={() => handleSubmit()}
+                            className="btn btn-outline-success"
+                        >Cargar</button>
+                    </div>
+
+                </form>
+            </Paper>
         </div>
     )
 }

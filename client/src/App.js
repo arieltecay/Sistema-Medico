@@ -6,11 +6,10 @@ import NavBar from './components/NavBar'
 import EditPaciente from './components/EditPaciente/EditPaciente'
 import UpdateOK from './components/UpdateOK'
 import Prueba from './components/Prueba/prueba'
-import './App.css'
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         <NavBar />
         <Switch>
