@@ -3,34 +3,92 @@
     margin: 0;
     box-sizing: border-box;
   }  
+
+.containers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 form{
-    width:60%;
+    width:90%;
     height: 300px;
     justify-content: space-around;
 	padding:16px;
-    border-radius:10px red;
+    border-radius:5px red;
 	margin:auto;
-	background-color:#f0f0f0;
+    background-color:none;
 }
+
 .datosPersonales{
     display: flex;
     padding-bottom: 1rem;
     justify-content: space-around;
-    font-size: 24px;
+    font-size: 26px;
+    
 }
 .date{
     font-size: 18px;
     width: 13rem;
     height: 1rem;
-    padding-right: 1rem;
-    color: #808080;
 }
   
 .err{
-    border: red 5px solid;
-    border-radius: 8px;
+    border: red 3px solid;
+    border-radius: 3px;
 }
-.btnCargar{
+
+.paper{
+    margin-left: 30%;
+    width: 40%;
+    height: 350px;
+}
+
+@media screen and (min-width: 500px){
+    .medio{
+        margin-left: 8px;
+    }
+    .arriba{
+        padding-top: 8px;
+    }
+}
+.boton{
     display: flex;
-    justify-content: center;
+}
+@media screen and (max-width: 500px){
+    .datosPersonales{
+        margin-top: 90%;
+        display: flex;
+        font-size: 26px;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        width:100%;
+    }
+    .paper{
+        margin-left: 5%;
+        width: 90%;
+        height: 560px;
+    }
+    .containers{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        margin-left: 15%;
+    }
+    .medio{
+        margin-top: 8px;
+    }
+    .arriba{
+        padding-top: 8px;
+    }
+    .radio{
+        display: flex;
+        flex-direction: row;
+        margin-top: 1rem;
+    }
 }
