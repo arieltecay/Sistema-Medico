@@ -1,19 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Nav, Navbar } from 'react-bootstrap';
 
 export default function SearchBar() {
     return (
         <div className="pb-2">
-            <Navbar className="fixed-top" bg="dark" variant="dark">
-                <Nav className="mr-auto">
-                    <Link className="ml-4 text-white h3" to="/">Inicio</Link>
-                    <Link className="ml-4 text-white h3" to="/paciente">Paciente</Link>
-                    <Link className="ml-4 text-white h3" to="/prueba">Pruebas</Link>
-                </Nav>
-                <h3 className="w-50 p-1 "><Link  to="/">logMdic</Link></h3>
-
-            </Navbar>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav m-auto">
+                        <li className="nav-item active ">
+                            <Link className="ml-4 text-white h3" to="/">Inicio</Link>
+                        </li>
+                        <li className="nav-item active ">
+                            <Link className="ml-4 text-white h3" to="/paciente">Paciente</Link>
+                        </li>
+                        <li className="nav-item active ">
+                            <Link className="ml-4 text-white h3" to="/prueba">Pruebas</Link>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     );
 

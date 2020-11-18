@@ -3,9 +3,12 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import Paciente from './components/Paciente/Paciente'
 import Home from './components/Home.jsx'
 import NavBar from './components/NavBar'
+import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import EditPaciente from './components/EditPaciente/EditPaciente'
 import UpdateOK from './components/UpdateOK'
 import Prueba from './components/Prueba/prueba'
+import { blue } from '@material-ui/core/colors';
 
 function App() {
   return (
