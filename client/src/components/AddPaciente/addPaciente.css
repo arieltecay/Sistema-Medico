@@ -3,7 +3,6 @@
     margin: 0;
     box-sizing: border-box;
   }  
-
 .containers{
     display: flex;
     flex-direction: column;
