@@ -7,6 +7,7 @@ import MydModalWithGrid from '../EditPaciente/EditPaciente'
 import Swal from 'sweetalert2'
 import Pagination from '../Paciente/Pagination'
 import Table from 'react-bootstrap/Table'
+import { Paper } from '@material-ui/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 
@@ -69,17 +70,17 @@ export default function Paciente() {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(removePaciente(id))
-              Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-              )
-              setShowPaciente(false)
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                setShowPaciente(false)
             }
-          })
+        })
     }
 
     //Get Currents Pacients
@@ -123,7 +124,13 @@ export default function Paciente() {
                         />
                     </div>
                     <div className="container">
-                        <Table className="table table-sm" striped bordered hover size="sm" responsive>
+                        <Table
+                            className="table table-sm"
+                            striped
+                            bordered
+                            hover
+                            size="sm"
+                            responsive>
                             <thead size="sm">
                                 <tr className='cabecera'>
                                     <th>Nombre</th>
@@ -139,14 +146,14 @@ export default function Paciente() {
                             <tbody>
                                 {currentPaciente.map((pac) => (
                                     <tr key={pac.id}>
-                                        <td>{pac.name}</td>
-                                        <td>{pac.lastName} </td>
-                                        <td>{pac.DNI}</td>
-                                        <td>{pac.celular}</td>
-                                        <td>{pac.email}</td>
-                                        <td>{pac.direccion}</td>
-                                        <td>{pac.nSocio}</td>
-                                        <td >
+                                        <td data-titulo='Nombre'>{pac.name}</td>
+                                        <td data-titulo='Apellido'>{pac.lastName} </td>
+                                        <td data-titulo='DNI'>{pac.DNI}</td>
+                                        <td data-titulo='Celular'>{pac.celular}</td>
+                                        <td data-titulo='E-mail'>{pac.email}</td>
+                                        <td data-titulo='Dreccion'>{pac.direccion}</td>
+                                        <td data-titulo='N° de Socio'>{pac.nSocio}</td>
+                                        <td className='botones'>
                                             <button
                                                 className="btn btn-primary btn-sm"
                                                 onClick={() => seleccionarPaciente(pac)}
