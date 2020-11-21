@@ -25,10 +25,9 @@ form{
     padding-bottom: 1rem;
     justify-content: space-around;
     font-size: 26px;
-    
 }
 .date{
-    font-size: 18px;
+    font-size: 16px;
     width: 13rem;
     height: 1rem;
 }
@@ -44,40 +43,39 @@ form{
     height: 350px;
 }
 
+.boton{
+    display: flex;
+}
 @media screen and (min-width: 500px){
     .medio{
-        margin-left: 8px;
+        margin-left: 4px;
     }
     .arriba{
         padding-top: 8px;
     }
 }
-.boton{
-    display: flex;
-}
 @media screen and (max-width: 500px){
     .datosPersonales{
-        margin-top: 90%;
+        margin-top: 80%;
+        margin-right: 10%;
+        padding-top: 2rem;
         display: flex;
         font-size: 26px;
     }
     form{
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-
-        width:100%;
+        width:90%;
     }
     .paper{
-        margin-left: 5%;
-        width: 90%;
         height: 560px;
+        width: 20rem !important; 
     }
     .containers{
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        margin-left: 15%;
+        margin-left: 5%;
     }
     .medio{
         margin-top: 8px;
