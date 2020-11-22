@@ -4,7 +4,7 @@ import useFetch from '../Hooks/useFetch'
 import { Redirect } from "react-router";
 import { useDispatch } from 'react-redux';
 import './editPaciente.css'
-import {  Modal } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
 import { updatePaciente } from '../../redux/actions'
 
 export default function MydModalWithGrid(props) {
@@ -12,34 +12,33 @@ export default function MydModalWithGrid(props) {
   const dispatch = useDispatch();
   const [selectedValue] = useState();
   const [editar, setEditar] = useState(false)
-  
+
   function handleInputChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   }
-  const {input, setInput} = useFetch("http://localhost:3001/paciente/" + idPaciente); //Custom HOOK
+  const { input, setInput } = useFetch("http://localhost:3001/paciente/" + idPaciente); //Custom HOOK
 
   function sendPaciente(e, input) {
     e.preventDefault();
     dispatch(updatePaciente(idPaciente, input))
   }
   if (editar) {
-    return <Redirect to="/updateOk"/>;
+    return <Redirect to="/updateOk" />;
   }
-
 
   return (
     input && (
       <div >
-        <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" >
-          <Modal.Header closeButton>
-            <Modal.Title className='editar' id="contained-modal-title-vcenter">
+        <Modal {...props}  size="lg" aria-labelledby="contained-modal-title-vcenter" >
+          <Modal.Header   closeButton>
+            <Modal.Title    id="contained-modal-title-vcenter" className='editPaciente'>
               <p >Editar Paciente</p>
             </Modal.Title>
           </Modal.Header>
-          <div >
+          <div className='ml-5 '>
             <form
               className='form'
               autoComplete='off'
@@ -50,7 +49,7 @@ export default function MydModalWithGrid(props) {
                 }, 50);
               }}
             >
-              <div >
+              <div>
                 <div>
                   <input
                     type="text"
@@ -65,24 +64,25 @@ export default function MydModalWithGrid(props) {
                     name="lastName"
                     value={input.lastName}
                     onChange={handleInputChange}
-                    className='ml-3'
+                    className='apellido'
                   />
                   <input
                     type="text"
                     placeholder='DNI'
                     name="DNI"
                     value={input.DNI}
-                    className='ml-3'
+                    className='dni'
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className='mt-3'>
+                <div>
                   <input
                     type="text"
                     placeholder='E-Mail'
                     name="email"
                     value={input.email}
                     onChange={handleInputChange}
+                    className='email'
                   />
                   <input
                     type="number"
@@ -90,18 +90,18 @@ export default function MydModalWithGrid(props) {
                     name="celular"
                     value={input.celular}
                     onChange={handleInputChange}
-                    className='ml-3'
+                    className='celular'
                   />
                   <input
                     type="text"
                     placeholder='Domicilio'
                     name="direccion"
                     value={input.direccion}
-                    className='ml-3'
+                    className='direccion'
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className='mt-3'>
+                <div className=''>
                   <input
                     className='date'
                     type="date"
@@ -115,10 +115,9 @@ export default function MydModalWithGrid(props) {
                     name="nSocio"
                     value={input.nSocio}
                     onChange={handleInputChange}
-                    className='ml-3'
+                    className='nSocio'
                   />
-                  <div className='radio pt-3'>
-
+                  <div className='radio pt-1'>
                     <Radio
                       checked={selectedValue === 'a'}
                       onChange={handleInputChange}
@@ -153,7 +152,7 @@ export default function MydModalWithGrid(props) {
                       type="submit"
                     >
                       Editar
-            </button>
+                    </button>
                   </div>
                 </div>
               </div>
