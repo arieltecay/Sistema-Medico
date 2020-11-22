@@ -13,6 +13,7 @@
 .date{
     height: 1rem;
     color: black;
+    margin-top: 6px;
 }
 .radio{
     display: flex;
@@ -21,4 +22,69 @@
 .boton{
     display: flex;
     justify-content: center;
+}
+@media screen and (min-width: 500px){
+    .editPaciente{
+        display: flex;
+        margin-left: 40%;
+    }
+    .apellido{
+        margin-left: 6px;
+    }
+    .dni{
+        margin-left: 6px;
+    }
+    .email{
+        margin-top: 6px;
+    }
+    .celular{
+        margin-left: 6px;
+    }
+    .direccion{
+        margin-left: 6px;
+
+    }
+    .nSocio{
+        margin-left: 8px;
+    }
+
+}
+
+@media screen and (max-width: 500px){
+    .editPaciente{
+        display: flex;
+        margin-left: 25%;
+    }
+    .form{
+        display: flex;
+        background-color: white;
+        width: 290px;
+        height: 450px;
+    }
+    .editar{
+        
+        background: chartreuse;
+    }
+    .radio{
+        display: flex;
+        justify-content: right;
+    }
+    .apellido{
+        margin-top: 6px;
+    }
+    .dni{
+        margin-top: 6px;
+    }
+    .email{
+        margin-top: 6px;
+    }
+    .celular{
+        margin-top: 6px;
+    }
+    .direccion{
+        margin-top: 6px;
+    }
+    .nSocio{
+        margin-top: 6px;
+    }
 }
